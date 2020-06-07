@@ -18,9 +18,11 @@ public class Order {
     private int orderStatus;
     private String orderStatusStr;
     private int peopleCount;
+
     private Product product;
     private List<Traveller> travellers;
     private Member member;
+
     private Integer payType;
     private String payTypeStr;
     private String orderDesc;

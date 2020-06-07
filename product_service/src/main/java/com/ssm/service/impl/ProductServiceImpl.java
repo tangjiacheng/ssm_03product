@@ -32,7 +32,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void save(Product product) throws ParseException {
-        product.setDepartureTime(DateUtils.string2Date(product.getDepartureTimeStr(), "yyyy-MM-dd HH:mm"));
+//        product.setDepartureTime(DateUtils.string2Date(product.getDepartureTimeStr(), "yyyy-MM-dd HH:mm"));
         productDao.save(product);
     }
 

@@ -117,7 +117,7 @@
 									<i class="fa fa-calendar"></i>
 								</div>
 								<input type="text" class="form-control pull-right"
-									id="datepicker-a3" name="departureTimeStr">
+									id="datepicker-a3" name="departureTime">
 							</div>
 						</div>
 
