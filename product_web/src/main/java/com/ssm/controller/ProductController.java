@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -22,11 +23,28 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
-    @RequestMapping("/findAll.do")
+    @RequestMapping("/findAll.do") // 查询所有产品
     public String findAll(Model model) throws Exception {
         ModelAndView mv = new ModelAndView();
         List<Product> products = productService.findAll();
-        model.addAttribute("", products);
-        return "";
+        model.addAttribute("productList", products);
+        return "product-list";
     }
+
+    @RequestMapping("/toMain.do")
+    public String toMain() {
+        return "main";
+    }
+
+    @RequestMapping("/toAdd.do")
+    public String toAdd() {
+        return "product-add";
+    }
+
+    @RequestMapping("save.do")   // 添加产品
+    public String saveProduct(Product product) throws ParseException {
+        productService.save(product);
+        return "redirect:findAll.do";
+    }
+
 }
