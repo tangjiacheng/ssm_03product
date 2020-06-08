@@ -27,7 +27,7 @@ public interface IOrderDao {
             @Result(property = "payType", column = "payType"),
             @Result(property = "orderDesc", column = "orderDesc"),
             @Result(property = "product", column = "productId", javaType = Product.class,
-                    one = @One(select = "com.ssm.dao.IProductDao.findById")),
+                    one = @One(select = "com.ssm.dao.IProductDao.findById"))
     })
     List<Order> findAll();
 

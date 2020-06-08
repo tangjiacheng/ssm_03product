@@ -113,4 +113,20 @@ public class Product {
     public void setProductStatusStr(String productStatusStr) {
         this.productStatusStr = productStatusStr;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productNum='" + productNum + '\'' +
+                ", productName='" + productName + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", departureTime=" + departureTime +
+                ", departureTimeStr='" + departureTimeStr + '\'' +
+                ", productPrice=" + productPrice +
+                ", productDesc='" + productDesc + '\'' +
+                ", productStatus=" + productStatus +
+                ", productStatusStr='" + productStatusStr + '\'' +
+                '}';
+    }
 }

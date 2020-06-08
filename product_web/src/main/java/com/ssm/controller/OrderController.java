@@ -49,6 +49,6 @@ public class OrderController {
     public String findById(@RequestParam(name = "id") int id, Model model) {
         Order order = orderService.findById(id);
         model.addAttribute("orders", order);
-        return "orders-show2";
+        return "orders-show";
     }
 }

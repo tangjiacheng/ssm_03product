@@ -17,8 +17,8 @@
 			content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 			name="viewport">
 
-	<link rel=“stylesheet”
-		  href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+	<%--<link rel=“stylesheet”
+		  href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">--%>
 	<link rel="stylesheet"
 		  href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet"
@@ -148,8 +148,7 @@
 
 					<div class="col-md-2 title rowHeight2x">其他信息</div>
 					<div class="col-md-10 data rowHeight2x">
-						<textarea class="form-control" rows="3" placeholder="其他信息">
-							${orders.orderDesc }
+						<textarea class="form-control" rows="3" placeholder="其他信息">${orders.orderDesc }
 						</textarea>
 					</div>
 
@@ -175,17 +174,18 @@
 					<c:forEach var="traveller" items="${orders.travellers}">
 
 						<tr>
-							<td>${traveller.travellerTypeStr}</td>
-							<td><input type="text" size="10" value="${traveller.name }"
+							<td><input type="text" class="form-control" size="10" value="${traveller.travellerTypeStr}"
 									   readonly="readonly"></td>
-							<td><input type="text" size="10" value="${traveller.sex }"
+							<td><input type="text" class="form-control" size="10" value="${traveller.name}"
 									   readonly="readonly"></td>
-							<td><input type="text" size="20"
-									   value="${traveller.phoneNum }" readonly="readonly"></td>
-							<td><input type="text" size="15"
+							<td><input type="text" class="form-control" size="10" value="${traveller.sex}"
+									   readonly="readonly"></td>
+							<td><input type="text" class="form-control" size="20"
+									   value="${traveller.phoneNum}" readonly="readonly"></td>
+							<td><input type="text" class="form-control" size="15"
 									   value="${traveller.credentialsTypeStr}" readonly="readonly"></td>
-							<td><input type="text" size="28"
-									   value="${traveller.credentialsNum }" readonly="readonly"></td>
+							<td><input type="text" class="form-control" size="28"
+									   value="${traveller.credentialsNum}" readonly="readonly"></td>
 						</tr>
 					</c:forEach>
 
