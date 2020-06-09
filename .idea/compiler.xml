@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="product_web" />
-        <module name="product_domain" />
-        <module name="product_utils" />
         <module name="product_service" />
         <module name="product_dao" />
+        <module name="product_utils" />
+        <module name="product_domain" />
+        <module name="product_web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

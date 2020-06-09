@@ -3,11 +3,13 @@ package com.ssm.service.impl;
 import com.ssm.dao.IUserDao;
 import com.ssm.domain.Role;
 import com.ssm.domain.UserInfo;
+import com.ssm.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,12 +28,15 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private IUserDao userDao;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserInfo userInfo = userDao.findByUserName(s);
         // 处理自己的用户对象封装成UserDetails
 //        User user = new User(userInfo.getUsername(), "{noop}" + userInfo.getPassword(), getAuthority(userInfo.getRoles()));
-        return new User(userInfo.getUsername(), "{noop}" + userInfo.getPassword(), userInfo.getStatus()!=0,
+        return new User(userInfo.getUsername(), userInfo.getPassword(), userInfo.getStatus()!=0,
                 true, true, true, getAuthority(userInfo.getRoles()));
     }
 
@@ -51,6 +56,25 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void saveUser(UserInfo user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userDao.saveUser(user);
+    }
+
+    @Override
+    public UserInfo findById(int id) {
+        return userDao.findById(id);
+    }
+
+    @Override
+    public List<Role> findRestRole(int userId) {
+        return userDao.findRestRole(userId);
+    }
+
+    @Override
+    @Transactional
+    public void addRoleToUser(int userId, String[] ids) {
+        for (String id : ids) {
+            userDao.addRoleToUser(userId, Integer.parseInt(id));
+        }
     }
 }

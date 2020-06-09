@@ -37,23 +37,18 @@ public class ProductController {
         ModelAndView mv = new ModelAndView();
         List<Product> products = productService.findAll();
         model.addAttribute("productList", products);
-        return "product-list";
-    }
-
-    @RequestMapping("/toMain.do")
-    public String toMain() {
-        return "main";
+        return "product/product-list";
     }
 
     @RequestMapping("/toAdd.do")
     public String toAdd() {
-        return "product-add";
+        return "product/product-add";
     }
 
     @RequestMapping("save.do")   // 添加产品
     public String saveProduct(Product product) throws ParseException {
         productService.save(product);
-        return "redirect:findAll.do";
+        return "redirect:/product/findAll.do";
     }
 
 }

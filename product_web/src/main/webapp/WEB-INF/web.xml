@@ -30,7 +30,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcherServlet</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <filter>
@@ -59,6 +59,10 @@
         <session-timeout>10</session-timeout>
     </session-config>
 
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.jsp</location>
+    </error-page>
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
