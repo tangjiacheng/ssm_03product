@@ -1,5 +1,7 @@
 package com.ssm.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.ssm.domain.Order;
 import com.ssm.domain.Product;
 import com.ssm.service.IProductService;
 import com.ssm.utils.DateStringEditor;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
@@ -33,11 +36,15 @@ public class ProductController {
     }
 
     @RequestMapping("/findAll.do") // 查询所有产品
-    public String findAll(Model model) throws Exception {
+    public ModelAndView findAll(@RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
+                                @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) throws Exception {
         ModelAndView mv = new ModelAndView();
-        List<Product> products = productService.findAll();
-        model.addAttribute("productList", products);
-        return "product/product-list";
+        List<Product> products = productService.findAll(page, size);
+        PageInfo<Product> pageInfo = new PageInfo<>(products);
+        mv.addObject("pageInfo", pageInfo);
+        mv.addObject("productList", products);
+        mv.setViewName("product/product-list");
+        return mv;
     }
 
     @RequestMapping("/toAdd.do")

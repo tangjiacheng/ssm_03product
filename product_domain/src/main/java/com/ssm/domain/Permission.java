@@ -1,5 +1,6 @@
 package com.ssm.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @Date: 2020/6/7 19:49
  * @description: 权限实体类
  */
-public class Permission {
+public class Permission implements Serializable {
 
     private Integer id;
     private String permissionName;

@@ -4,6 +4,7 @@ import com.ssm.utils.DateUtils;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  * @Date: 2020/6/6 14:38
  * @description: 产品信息
  */
-public class Product {
+public class Product implements Serializable {
     private Integer id; //主键
     private String productNum; //编号 唯一
     private String productName;

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IProductDao {
 
-    @Select("select * from product")  //查询所有产品信息
+    @Select("select * from product order by departureTime asc")  //查询所有产品信息
     public List<Product> findAll() throws Exception;
 
     @Insert("insert into product(productNum, productName, cityName, departureTime, productPrice, productDesc, productStatus) " +

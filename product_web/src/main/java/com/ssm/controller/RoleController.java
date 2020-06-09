@@ -1,5 +1,7 @@
 package com.ssm.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.ssm.domain.Order;
 import com.ssm.domain.Permission;
 import com.ssm.domain.Role;
 import com.ssm.service.IPermissionService;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -29,17 +32,24 @@ public class RoleController {
     IPermissionService permissionService;
 
     @RequestMapping("/findAll.do")
-    public String findAll(Model model){
-        List<Role> roles = roleService.findAll();
-        model.addAttribute("roleList", roles);
-        return "role/role-list";
+    public ModelAndView findAll(@RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
+                                @RequestParam(name = "size", defaultValue = "5", required = false) Integer size){
+        ModelAndView mv = new ModelAndView();
+        List<Role> roles = roleService.findAll(page, size);
+        PageInfo<Role> pageInfo = new PageInfo<>(roles);
+        mv.addObject("pageInfo", pageInfo);
+        mv.addObject("roleList", roles);
+        mv.setViewName("role/role-list");
+        return mv;
     }
 
     @RequestMapping("/findById.do")
-    public String findById(int id, Model model) {
+    public ModelAndView findById(Integer id) {
+        ModelAndView mv = new ModelAndView();
         Role role = roleService.findById(id);
-        model.addAttribute("role", role);
-        return "role/role-show";
+        mv.addObject("role", role);
+        mv.setViewName("role/role-show");
+        return mv;
     }
 
     @RequestMapping("/toAdd.do")
@@ -56,11 +66,13 @@ public class RoleController {
 
     @RequestMapping("/findRoleByIdAndAllPermission.do")
     @Secured("ROLE_ADMIN")
-    public String findRoleByIdAndAllPermission(int id, Model model) {
+    public ModelAndView findRoleByIdAndAllPermission(Integer id) {
+        ModelAndView mv = new ModelAndView();
         List<Permission> permissions = roleService.findOtherPermissions(id);
-        model.addAttribute("id", id);
-        model.addAttribute("permissionList", permissions);
-        return "role/role-permission-add";
+        mv.addObject("id", id);
+        mv.addObject("permissionList", permissions);
+        mv.setViewName("role/role-permission-add");
+        return mv;
     }
 
     @RequestMapping("/addPermissionToRole.do")
@@ -72,9 +84,8 @@ public class RoleController {
 
     @RequestMapping("/deleteRole.do")
     @Secured("ROLE_ADMIN")
-    public String deleteRole(int id) {
+    public String deleteRole(Integer id) {
         roleService.deleteRole(id);
-
         return "redirect:/role/findAll.do";
     }
 }

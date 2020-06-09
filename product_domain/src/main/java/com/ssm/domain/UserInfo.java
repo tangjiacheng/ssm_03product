@@ -1,5 +1,6 @@
 package com.ssm.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @Date: 2020/6/7 19:48
  * @description: 与数据库中的users对应
  */
-public class UserInfo {
+public class UserInfo implements Serializable {
     private Integer id;
     private String username;
     private String email;

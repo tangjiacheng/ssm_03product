@@ -12,7 +12,7 @@
 
 
 
-<title>数据 - AdminLTE2定制版</title>
+<title>订单管理-全部订单</title>
 <meta name="description" content="AdminLTE2定制版">
 <meta name="keywords" content="AdminLTE2定制版">
 
@@ -169,9 +169,9 @@
 					数据管理 <small>数据列表</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-					<li><a href="#">数据管理</a></li>
-					<li class="active">数据列表</li>
+					<li><a href="${pageContext.request.contextPath}/toMain.do"><i class="fa fa-dashboard"></i> 首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/orders/findAll.do">订单管理</a></li>
+					<li class="active">全部订单</li>
 				</ol>
 			</section>
 			<!-- 内容头部 /-->
@@ -195,7 +195,7 @@
 								<div class="form-group form-inline">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default" title="新建"
-											onclick="location.href='../product/product-add.jsp'">
+											onclick="location.href='${pageContext.request.contextPath}/product/product-add.jsp'">
 											<i class="fa fa-file-o"></i> 新建
 										</button>
 										<button type="button" class="btn btn-default" title="删除">
@@ -315,14 +315,13 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共${pageInfo.pages}页，共15条数据。 每页
-                            <select class="form-control" id="changePageSize" onchange="changePageSize()">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select> 条
+                            总共${pageInfo.pages}页。 每页
+                            <select class="form-control" id="changePageSize" placeholder="${pageInfo.pageSize}" onchange="changePageSize()">
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+							</select> 条
                         </div>
                     </div>
 
@@ -341,7 +340,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 <!-- /.box-footer-->
 

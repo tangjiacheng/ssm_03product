@@ -1,5 +1,6 @@
 package com.ssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.ssm.dao.IPermissionDao;
 import com.ssm.domain.Permission;
 import com.ssm.service.IPermissionService;
@@ -22,7 +23,8 @@ public class PermissionService implements IPermissionService {
     private IPermissionDao permissionDao;
 
     @Override
-    public List<Permission> findAll() {
+    public List<Permission> findAll(Integer page, Integer size) {
+        PageHelper.startPage(page, size);
         return permissionDao.findAll();
     }
 

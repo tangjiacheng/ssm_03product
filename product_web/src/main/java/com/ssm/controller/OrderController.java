@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -31,20 +32,23 @@ public class OrderController {
     }*/
 
     @RequestMapping("/findAll.do")  // 查询全部订单 分页
-    public String findAll(@RequestParam(name = "page", defaultValue = "1") int page,
-                          @RequestParam(name = "size", defaultValue = "4") int size,
-                          Model model) {
+    public ModelAndView findAll(@RequestParam(name = "page", defaultValue = "1", required = false) Integer page,
+                                @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
+        ModelAndView mv = new ModelAndView();
         List<Order> orders = orderService.findAll(page, size);
         // pageInfo 就是一个分页的bean
         PageInfo<Order> pageInfo = new PageInfo<>(orders);
-        model.addAttribute("pageInfo", pageInfo);
-        return "order/orders-list";
+        mv.addObject("pageInfo", pageInfo);
+        mv.setViewName("order/orders-list");
+        return mv;
     }
 
     @RequestMapping("/findById.do")
-    public String findById(@RequestParam(name = "id") int id, Model model) {
+    public ModelAndView findById(@RequestParam(name = "id") Integer id) {
+        ModelAndView mv = new ModelAndView();
         Order order = orderService.findById(id);
-        model.addAttribute("orders", order);
-        return "order/orders-show";
+        mv.addObject("orders", order);
+        mv.setViewName("order/orders-show");
+        return mv;
     }
 }

@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.ssm.dao.IProductDao;
 import com.ssm.domain.Product;
 import com.ssm.service.IProductService;
-import com.ssm.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +24,8 @@ public class ProductServiceImpl implements IProductService {
     private IProductDao productDao;
 
     @Override
-    public List<Product> findAll() throws Exception {
-//        PageHelper.startPage(1, 5);
+    public List<Product> findAll(Integer page, Integer size) throws Exception {
+        PageHelper.startPage(page, size);
         return productDao.findAll();
     }
 

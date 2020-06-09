@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface IRoleService {
 
-    public List<Role> findAll();
+    public List<Role> findAll(Integer page, Integer size);
 
     void saveRole(Role role);
 

@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface IProductService {
 
-    public List<Product> findAll() throws Exception;
+    public List<Product> findAll(Integer page, Integer size) throws Exception;
 
     void save(Product product) throws ParseException;
 }

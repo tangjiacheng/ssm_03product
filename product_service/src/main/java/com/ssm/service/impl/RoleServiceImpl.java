@@ -1,12 +1,12 @@
 package com.ssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.ssm.dao.IRoleDao;
 import com.ssm.domain.Permission;
 import com.ssm.domain.Role;
 import com.ssm.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -24,7 +24,8 @@ public class RoleServiceImpl implements IRoleService {
     private IRoleDao roleDao;
 
     @Override
-    public List<Role> findAll() {
+    public List<Role> findAll(Integer page, Integer size) {
+        PageHelper.startPage(page, size);
         return roleDao.findAll();
     }
 

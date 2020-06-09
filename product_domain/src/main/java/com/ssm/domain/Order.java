@@ -2,6 +2,7 @@ package com.ssm.domain;
 
 import com.ssm.utils.DateUtils;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @Date: 2020/6/6 20:20
  * @description: 订单
  */
-public class Order {
+public class Order implements Serializable {
     private String id;
     private String orderNum;
     private Timestamp orderTime;

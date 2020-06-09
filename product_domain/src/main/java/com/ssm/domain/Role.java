@@ -1,6 +1,7 @@
 package com.ssm.domain;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @Date: 2020/6/7 19:48
  * @description: 角色实体类
  */
-public class Role {
+public class Role implements Serializable {
     private Integer id;
     private String roleName;
     private String roleDesc;

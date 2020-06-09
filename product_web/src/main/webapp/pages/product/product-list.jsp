@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-    <title>数据 - AdminLTE2定制版</title>
+    <title>产品管理-全部产品</title>
     <meta name="description" content="AdminLTE2定制版">
     <meta name="keywords" content="AdminLTE2定制版">
 
@@ -156,12 +156,12 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                数据管理 <small>数据列表</small>
+                产品管理 <small>产品列表</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">数据管理</a></li>
-                <li class="active">数据列表</li>
+                <li><a href="#">产品管理</a></li>
+                <li class="active">产品列表</li>
             </ol>
         </section>
         <!-- 内容头部 /-->
@@ -310,27 +310,29 @@
                 <div class="box-footer">
                     <div class="pull-left">
                         <div class="form-group form-inline">
-                            总共2 页，共14 条数据。 每页 <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select> 条
+                            总共${pageInfo.pages}页。 每页
+                            <select class="form-control" id="changePageSize" placeholder="${pageInfo.pageSize}" onchange="changePageSize()">
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                            </select> 条
                         </div>
                     </div>
 
                     <div class="box-tools pull-right">
                         <ul class="pagination">
-                            <li><a href="#" aria-label="Previous">首页</a></li>
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
-                            <li><a href="#" aria-label="Next">尾页</a></li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/product/findAll.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+                            </li>
+                            <li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+                            <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
+                                <li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
+                            </c:forEach>
+                            <li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -449,6 +451,14 @@
 <script
         src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+    function changePageSize() {
+        //获取下拉框的值
+        var pageSize = $("#changePageSize").val();
+
+        //向服务器发送请求，改变没页显示条数
+        location.href = "${pageContext.request.contextPath}/orders/findAll.do?page=1&size="
+            + pageSize;
+    }
     $(document).ready(function () {
         // 选择框
         $(".select2").select2();
