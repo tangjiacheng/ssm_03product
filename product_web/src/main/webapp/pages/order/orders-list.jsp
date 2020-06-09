@@ -253,9 +253,8 @@
 											<td>${orders.orderTimeStr }</td>
 											<td class="text-center">${orders.orderStatusStr }</td>
 											<td class="text-center">
-												<button type="button" class="btn bg-olive btn-xs">订单</button>
 												<button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/orders/findById.do?id=${orders.id}'">详情</button>
-												<button type="button" class="btn bg-olive btn-xs">编辑</button>
+												<button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/orders/deleteOrder.do?id=${orders.id}'">删除</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -357,12 +356,11 @@
 		<!-- 底部导航 -->
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
-				<b>Version</b> 1.0.8
+				<b>Version</b> 0.1
 			</div>
-			<strong>Copyright &copy; 2014-2017 <a
-				href="http://www.itcast.cn">研究院研发部</a>.
-			</strong> All rights reserved.
-		</footer>
+			<strong>Copyright &copy; 2018-2020 <a
+					href="https://github.com/tangjiacheng/ssm_03product">查看源码</a>.
+			</strong> All rights reserved. </footer>
 		<!-- 底部导航 /-->
 
 	</div>

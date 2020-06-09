@@ -87,4 +87,15 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(bCryptPasswordEncoder.encode(password));
         userDao.updateUser(user);
     }
+
+    @Override
+    public void deleteUserById(Integer id) {
+        userDao.deleteUsers_RoleByUserId(id);
+        userDao.deleteUserById(id);
+    }
+
+    @Override
+    public void updateUser(UserInfo user) {
+        userDao.updateUser(user);
+    }
 }

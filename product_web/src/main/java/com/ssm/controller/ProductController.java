@@ -1,10 +1,13 @@
 package com.ssm.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.ssm.domain.Order;
 import com.ssm.domain.Product;
+import com.ssm.service.IOrderService;
 import com.ssm.service.IProductService;
 import com.ssm.utils.DateStringEditor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -27,6 +30,9 @@ public class ProductController {
 
     @Autowired
     private IProductService productService;
+
+    @Autowired
+    private IOrderService orderService;
 
 
     @InitBinder
@@ -54,6 +60,35 @@ public class ProductController {
     @RequestMapping("save.do")   // 添加产品
     public String saveProduct(Product product) throws ParseException {
         productService.save(product);
+        return "redirect:/product/findAll.do";
+    }
+
+    @RequestMapping("/findOrders.do")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
+    public ModelAndView findOrders(Integer id) {
+        ModelAndView mv = new ModelAndView();
+        Product product = productService.findById(id);
+        List<Order> orders = orderService.findByProductId(id);
+        mv.addObject("product", product);
+        mv.addObject("orders", orders);
+        mv.setViewName("product/product-orders-show");
+        return mv;
+    }
+
+    @RequestMapping("/toUpdate.do")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
+    public ModelAndView toUpdate(Integer id) {
+        ModelAndView mv = new ModelAndView();
+        Product product = productService.findById(id);
+        mv.addObject("product", product);
+        mv.setViewName("product/product-update");
+        return mv;
+    }
+
+    @RequestMapping("/updateProduct.do")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
+    public String updateProduct(Product product) {
+        productService.updateProduct(product);
         return "redirect:/product/findAll.do";
     }
 

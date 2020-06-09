@@ -39,13 +39,13 @@ public class PermissionController {
     }
 
     @RequestMapping("/toAdd.do")
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
     public String toAdd() {
         return "permission/permission-add";
     }
 
     @RequestMapping("/savePermission.do")
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
     public String savePermission(Permission permission) {
         permissionService.savePermission(permission);
         return "redirect:/permission/findAll.do";

@@ -32,25 +32,28 @@
 			</a>
 				<ul class="treeview-menu">
 
-					<li id="system-setting">
-						<security:authorize access="hasRole('ADMIN')">
+					<li id="system-setting1">
+
 						<a href="${pageContext.request.contextPath}/user/findAll.do">
 							<i class="fa fa-circle-o"></i> 用户管理
 						</a>
-						</security:authorize>
+
 					</li>
-					<li id="system-setting"><a
+					<li id="system-setting2"><a
 						href="${pageContext.request.contextPath}/role/findAll.do"> <i
 							class="fa fa-circle-o"></i> 角色管理
 					</a></li>
-					<li id="system-setting"><a
+					<li id="system-setting3"><a
 						href="${pageContext.request.contextPath}/permission/findAll.do">
 							<i class="fa fa-circle-o"></i> 资源权限管理
 					</a></li>
-					<li id="system-setting"><a
-						href="${pageContext.request.contextPath}/sysLog/findAll.do"> <i
+					<li id="system-setting4">
+						<security:authorize access="hasAnyRole('ADMIN', 'NORMAL')">
+						<a href="${pageContext.request.contextPath}/sysLog/findAll.do"> <i
 							class="fa fa-circle-o"></i> 访问日志
-					</a></li>
+						</a>
+						</security:authorize>
+					</li>
 				</ul></li>
 			<li class="treeview"><a href="#"> <i class="fa fa-cube"></i>
 					<span>基础数据</span> <span class="pull-right-container"> <i
@@ -59,11 +62,11 @@
 			</a>
 				<ul class="treeview-menu">
 
-					<li id="system-setting"><a
+					<li id="system-setting5"><a
 						href="${pageContext.request.contextPath}/product/findAll.do">
 							<i class="fa fa-circle-o"></i> 产品管理
 					</a></li>
-					<li id="system-setting"><a
+					<li id="system-setting6"><a
 <%--						href="${pageContext.request.contextPath}/orders/findAll.do"> <i--%>
 						href="${pageContext.request.contextPath}/orders/findAll.do"> <i
 							class="fa fa-circle-o"></i> 订单管理

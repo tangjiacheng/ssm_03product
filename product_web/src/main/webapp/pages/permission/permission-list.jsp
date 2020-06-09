@@ -113,7 +113,8 @@
                                         <i class="fa fa-file-o"></i> 新建
                                     </button>
 
-                                    <button type="button" class="btn btn-default" title="刷新">
+                                    <button type="button" class="btn btn-default" title="刷新"
+                                            onclick="window.location.reload();">
                                         <i class="fa fa-refresh"></i> 刷新
                                     </button>
                                 </div>
@@ -133,8 +134,7 @@
                                class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right: 0px"><input
-                                        id="selall" type="checkbox" class="icheckbox_square-blue">
+                                <th class="" style="padding-right: 0px">
                                 </th>
                                 <th class="sorting_asc">ID</th>
                                 <th class="sorting_desc">权限名称</th>
@@ -146,7 +146,6 @@
 
                             <c:forEach items="${permissionList}" var="p">
                                 <tr>
-                                    <td><input name="ids" type="checkbox"></td>
                                     <td>${p.id }</td>
                                     <td>${p.permissionName}</td>
                                     <td>${p.url}</td>

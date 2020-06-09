@@ -53,12 +53,13 @@ public class RoleController {
     }
 
     @RequestMapping("/toAdd.do")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
     public String toAdd(){
         return "role/role-add";
     }
 
     @RequestMapping("/saveRole.do")
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
     public String saveRole(Role role) {
         roleService.saveRole(role);
         return "redirect:/role/findAll.do";

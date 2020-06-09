@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ssm.domain.Order;
 import com.ssm.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,5 +51,12 @@ public class OrderController {
         mv.addObject("orders", order);
         mv.setViewName("order/orders-show");
         return mv;
+    }
+
+    @RequestMapping("/deleteOrder.do")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
+    public String deleteOrder(Integer id) {
+        orderService.deleteById(id);
+        return "redirect:/orders/findAll.do";
     }
 }

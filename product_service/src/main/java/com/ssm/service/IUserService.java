@@ -23,4 +23,8 @@ public interface IUserService extends UserDetailsService {
     void addRoleToUser(int userId, String[] ids);
 
     void changePassword(String username, String password);
+
+    void deleteUserById(Integer id);
+
+    void updateUser(UserInfo user);
 }

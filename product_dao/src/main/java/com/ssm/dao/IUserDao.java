@@ -54,4 +54,11 @@ public interface IUserDao {
 
     @Update("update users set username=#{username}, email=#{email}, PASSWORD=#{password}, phoneNum=#{phoneNum}, status=#{status} where id=#{id};")
     void updateUser(UserInfo user);
+
+
+    @Delete("delete from users_role where userId=#{id}")
+    void deleteUsers_RoleByUserId(Integer id);
+
+    @Delete("delete from users where id=#{id}")
+    void deleteUserById(Integer id);
 }

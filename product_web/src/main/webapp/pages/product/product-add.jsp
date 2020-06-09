@@ -82,7 +82,7 @@
 				产品管理 <small>产品表单</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="${pageContext.request.contextPath}/product/toMain.do"><i
+				<li><a href="${pageContext.request.contextPath}/toMain.do"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/product/findAll.do">产品管理</a></li>

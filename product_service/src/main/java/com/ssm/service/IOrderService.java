@@ -14,4 +14,8 @@ public interface IOrderService {
     List<Order> findAll(int page, int size);
 
     Order findById(int id);
+
+    List<Order> findByProductId(Integer productId);
+
+    void deleteById(Integer id);
 }

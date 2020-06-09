@@ -15,4 +15,8 @@ public interface IProductService {
     public List<Product> findAll(Integer page, Integer size) throws Exception;
 
     void save(Product product) throws ParseException;
+
+    Product findById(Integer id);
+
+    void updateProduct(Product product);
 }

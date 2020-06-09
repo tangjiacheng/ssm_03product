@@ -48,4 +48,13 @@ public interface IOrderDao {
                     many = @Many(select = "com.ssm.dao.ITravellerDao.findByOrderId"))
     })
     Order findById(int id);
+
+    @Select("select * from orders where productId=#{productId}")
+    List<Order> findByProductId(Integer productId);
+
+    @Delete("delete from order_traveller where orderId=#{id}")
+    void deleteOrder_TravellerByOrderId(Integer id);
+
+    @Delete("delete from orders where id=#{id}")
+    void deleteById(Integer id);
 }

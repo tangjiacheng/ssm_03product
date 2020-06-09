@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -72,7 +74,6 @@
 	<!-- 导航侧栏 -->
 	<jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"></jsp:include>
 	<!-- 导航侧栏 /-->
-
 	<!-- 内容区域 -->
 	<div class="content-wrapper">
 
@@ -112,7 +113,7 @@
 										<i class="fa fa-file-o"></i> 新建
 									</button>
 
-									<button type="button" class="btn btn-default" title="刷新">
+									<button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();">
 										<i class="fa fa-refresh"></i> 刷新
 									</button>
 								</div>
@@ -132,8 +133,7 @@
 							   class="table table-bordered table-striped table-hover dataTable">
 							<thead>
 							<tr>
-								<th class="" style="padding-right: 0px"><input
-										id="selall" type="checkbox" class="icheckbox_square-blue">
+								<th class="" style="padding-right: 0px">
 								</th>
 								<th class="sorting_asc">ID</th>
 								<th class="sorting_desc">角色名称</th>
@@ -145,13 +145,12 @@
 
 							<c:forEach items="${roleList}" var="role">
 								<tr>
-									<td><input name="ids" type="checkbox"></td>
 									<td>${role.id }</td>
 									<td>${role.roleName }</td>
 									<td>${role.roleDesc }</td>
 									<td class="text-center">
 										<a href="${pageContext.request.contextPath}/role/findById.do?id=${role.id}" class="btn bg-olive btn-xs">详情</a>
-										<a href="${pageContext.request.contextPath}/role/deleteRole.do?id=${role.id}" class="btn bg-olive btn-xs">删除角色</a>
+										<a href="${pageContext.request.contextPath}/role/deleteRole.do?id=${role.id}" class="btn bg-olive btn-xs">删除</a>
 										<a href="${pageContext.request.contextPath}/role/findRoleByIdAndAllPermission.do?id=${role.id}" class="btn bg-olive btn-xs">添加权限</a>
 									</td>
 								</tr>
@@ -182,7 +181,7 @@
 						<div class="form-group form-inline">
 							总共${pageInfo.pages}页。 每页
 							<select class="form-control" id="changePageSize" placeholder="${pageInfo.pageSize}" onchange="changePageSize()">
-								<option>3</option>
+								<option>请选择</option>
 								<option>4</option>
 								<option>5</option>
 								<option>6</option>
@@ -221,10 +220,10 @@
 	<!-- 底部导航 -->
 	<footer class="main-footer">
 		<div class="pull-right hidden-xs">
-			<b>Version</b> 1.0.8
+			<b>Version</b> 0.1
 		</div>
-		<strong>Copyright &copy; 2014-2017 <a
-				href="http://www.itcast.cn">研究院研发部</a>.
+		<strong>Copyright &copy; 2018-2020 <a
+				href="https://github.com/tangjiacheng/ssm_03product">查看源码</a>.
 		</strong> All rights reserved. </footer>
 	<!-- 底部导航 /-->
 

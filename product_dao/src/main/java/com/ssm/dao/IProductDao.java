@@ -3,6 +3,7 @@ package com.ssm.dao;
 import com.ssm.domain.Product;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +24,7 @@ public interface IProductDao {
 
     @Select("select * from product where id=#{id}")  // 根据id查询产品
     public Product findById(Integer id);
+
+    @Update("update product set productName=#{productName}, productNum=#{productNum}, cityName=#{cityName}, departureTime=#{departureTime}, productPrice=#{productPrice}, productDesc=#{productDesc}, productStatus=#{productStatus} where id=#{id}")
+    void updateProduct(Product product);
 }

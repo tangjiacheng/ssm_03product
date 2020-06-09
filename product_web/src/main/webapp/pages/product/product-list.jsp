@@ -197,7 +197,8 @@
                                     <button type="button" class="btn btn-default" title="屏蔽">
                                         <i class="fa fa-ban"></i> 屏蔽
                                     </button>
-                                    <button type="button" class="btn btn-default" title="刷新">
+                                    <button type="button" class="btn btn-default" title="刷新"
+                                            onclick="window.location.reload();">
                                         <i class="fa fa-refresh"></i> 刷新
                                     </button>
                                 </div>
@@ -247,9 +248,9 @@
                                     <td>${product.productDesc }</td>
                                     <td class="text-center">${product.productStatusStr }</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                        <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                        <button type="button" class="btn bg-olive btn-xs">编辑</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/product/findOrders.do?id=${product.id}'">订单</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/product/toUpdate.do?id=${product.id}'">编辑</button>
+                                        <button type="button" class="btn bg-olive btn-xs" onclick="location.href='${pageContext.request.contextPath}/product/deleteProduct.do?id=${product.id}'">删除</button>
                                     </td>
                                 </tr>
                             </c:forEach>

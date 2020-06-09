@@ -40,11 +40,13 @@ public class UserController {
     }
 
     @RequestMapping("/toAdd.do")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
     public String toAdd() {
         return "user/user-add";
     }
 
     @RequestMapping("/save.do")
+    @Secured({"ROLE_ADMIN", "ROLE_NORMAL"})
     public String save(UserInfo user) {
         userService.saveUser(user);
         return "redirect:/user/findAll.do";
@@ -75,6 +77,28 @@ public class UserController {
     @Secured("ROLE_ADMIN")
     public String addRoleToUser(@RequestParam("userId") Integer userId, @RequestParam("ids") String[] ids){
         userService.addRoleToUser(userId, ids);
+        return "redirect:/user/findAll.do";
+    }
+
+    @RequestMapping("/deleteUser.do")
+    @Secured("ROLE_ADMIN")
+    public String deleteUser(Integer id) {
+        userService.deleteUserById(id);
+        return "redirect:/user/findAll.do";
+    }
+
+    @RequestMapping("/toUpdate.do")
+    public ModelAndView toUpdate(Integer id) {
+        ModelAndView mv = new ModelAndView();
+        UserInfo user = userService.findById(id);
+        mv.addObject("user", user);
+        mv.setViewName("user/user-update");
+        return mv;
+    }
+
+    @RequestMapping("/update.do")
+    public String updateUser(UserInfo user) {
+        userService.updateUser(user);
         return "redirect:/user/findAll.do";
     }
 }

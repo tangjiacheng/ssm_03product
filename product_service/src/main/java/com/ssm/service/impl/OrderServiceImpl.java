@@ -33,4 +33,16 @@ class OrderServiceImpl implements IOrderService {
     public Order findById(int id) {
         return orderDao.findById(id);
     }
+
+    @Override
+    public List<Order> findByProductId(Integer productId) {
+        return orderDao.findByProductId(productId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id) {
+        orderDao.deleteOrder_TravellerByOrderId(id);
+        orderDao.deleteById(id);
+    }
 }

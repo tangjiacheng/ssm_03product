@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- 页面meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-<title>数据 - AdminLTE2定制版</title>
+<title>产品管理-修改产品</title>
 <meta name="description" content="AdminLTE2定制版">
 <meta name="keywords" content="AdminLTE2定制版">
 
@@ -16,6 +14,7 @@
 <meta
 	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 	name="viewport">
+
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
@@ -63,14 +62,13 @@
 	href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 
 	<div class="wrapper">
 
 		<!-- 页面头部 -->
 		<jsp:include page="${pageContext.request.contextPath}/pages/header.jsp"></jsp:include>
 		<!-- 页面头部 /-->
-
 		<!-- 导航侧栏 -->
 		<jsp:include page="${pageContext.request.contextPath}/pages/aside.jsp"></jsp:include>
 		<!-- 导航侧栏 /-->
@@ -81,149 +79,87 @@
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
-				日志管理 <small>全部日志</small>
+				产品管理 <small>修改产品信息</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/toMain.do"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/sysLog/findAll.do">日志管理</a></li>
-
-				<li class="active">全部日志</li>
+					href="${pageContext.request.contextPath}/product/findAll.do">产品管理</a></li>
+				<li class="active">修改产品</li>
 			</ol>
 			</section>
 			<!-- 内容头部 /-->
 
-			<!-- 正文区域 -->
-			<section class="content"> <!-- .box-body -->
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<h3 class="box-title">列表</h3>
-				</div>
+			<form action="${pageContext.request.contextPath}/product/updateProduct.do"
+				method="post">
+				<!-- 正文区域 -->
+				<section class="content"> <!--产品信息-->
+				<input type="hidden" value="${product.id}" name="id">
+				<div class="panel panel-default">
+					<div class="panel-heading">产品信息</div>
+					<div class="row data-type">
 
-				<div class="box-body">
-
-					<!-- 数据表格 -->
-					<div class="table-box">
-
-						<!--工具栏-->
-						<div class="pull-left">
-							<div class="form-group form-inline">
-								<div class="btn-group">
-									<button type="button" class="btn btn-default" title="刷新"
-										onclick="window.location.reload();">
-										<i class="fa fa-refresh"></i> 刷新
-									</button>
+						<div class="col-md-2 title">产品编号</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="productNum"
+								placeholder="${product.productNum}" value="${product.productNum}" required>
+						</div>
+						<div class="col-md-2 title">产品名称</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="productName"
+								placeholder="${product.productName}" value="${product.productName}" required>
+						</div>
+						<div class="col-md-2 title">出发时间</div>
+						<div class="col-md-4 data">
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
 								</div>
+								<input type="text" class="form-control pull-right"
+									id="datepicker-a3" name="departureTime" value="${product.departureTimeStr}">
 							</div>
 						</div>
-						<div class="box-tools pull-right">
-							<div class="has-feedback">
-								<input type="text" class="form-control input-sm"
-									placeholder="搜索"> <span
-									class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
+
+
+						<div class="col-md-2 title">出发城市</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="cityName"
+								placeholder="${product.cityName}" value="${product.cityName}" required>
 						</div>
-						<!--工具栏/-->
 
-						<!--数据列表-->
-						<table id="dataList"
-							class="table table-bordered table-striped table-hover dataTable">
-							<thead>
-								<tr>
-									<th class="" style="padding-right: 0px">
-									<th class="sorting_asc">ID</th>
-									<th class="sorting">访问时间</th>
-									<th class="sorting">访问用户</th>
-									<th class="sorting">访问IP</th>
-									<th class="sorting">资源URL</th>
-									<th class="sorting">执行时间</th>
-									<th class="sorting">访问方法</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${sysLogs}" var="syslog">
-									<tr>
-										<td>${syslog.id}</td>
-										<td>${syslog.visitTimeStr }</td>
-										<td>${syslog.username }</td>
-										<td>${syslog.ip }</td>
-										<td>${syslog.url}</td>
-										<td>${syslog.executionTime}毫秒</td>
-										<td>${syslog.method}</td>										
-									</tr>
-								</c:forEach>
-							</tbody>
-
-						</table>
-						<!--数据列表/-->
-
-						<!--工具栏-->
-						<div class="pull-left">
-							<div class="form-group form-inline">
-								<div class="btn-group">
-									<button type="button" class="btn btn-default" title="刷新"
-										onclick="window.location.reload();">
-										<i class="fa fa-refresh"></i> 刷新
-									</button>
-								</div>
-							</div>
+						<div class="col-md-2 title">产品价格</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" placeholder="产品价格"
+								name="${product.productPrice}" value="${product.productPrice}" required>
 						</div>
-						<div class="box-tools pull-right">
-							<div class="has-feedback">
-								<input type="text" class="form-control input-sm"
-									placeholder="搜索"> <span
-									class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
-						</div>
-						<!--工具栏/-->
 
+						<div class="col-md-2 title">产品状态</div>
+						<div class="col-md-4 data">
+							<select class="form-control select2" style="width: 100%"
+								name="productStatus">
+								<option value="0">关闭</option>
+								<option value="1" selected="selected">开启</option>
+							</select>
+						</div>
+
+						<div class="col-md-2 title rowHeight2x">其他信息</div>
+						<div class="col-md-10 data rowHeight2x">
+							<textarea class="form-control" rows="3" placeholder="${product.productDesc}"
+								name="productDesc">${product.productDesc}</textarea>
+						</div>
 
 					</div>
-					<!-- 数据表格 /-->
-
 				</div>
-				<!-- /.box-body -->
-
-				<!-- .box-footer-->
-				<div class="box-footer">
-					<div class="pull-left">
-						<div class="form-group form-inline">
-							总共${pageInfo.pages}页。 每页
-							<select class="form-control" id="changePageSize" onchange="changePageSize()">
-								<option>10</option>
-								<option>15</option>
-								<option>20</option>
-								<option>50</option>
-								<option>80</option>
-							</select> 条
-						</div>
-					</div>
-
-					<div class="box-tools pull-right">
-						<ul class="pagination">
-							<li>
-								<a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
-							</li>
-							<li><a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
-							<c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
-								<li><a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
-							</c:forEach>
-							<li><a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
-							<li>
-								<a href="${pageContext.request.contextPath}/sysLog/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
-							</li>
-						</ul>
-					</div>
-
+				<!--订单信息/--> <!--工具栏-->
+				<div class="box-tools text-center">
+					<button type="submit" class="btn bg-maroon">保存</button>
+					<button type="button" class="btn bg-default"
+						onclick="history.back(-1);">返回</button>
 				</div>
-				<!-- /.box-footer-->
-
-			</div>
-
-			</section>
-			<!-- 正文区域 /-->
-
+				<!--工具栏/--> </section>
+				<!-- 正文区域 /-->
+			</form>
 		</div>
 		<!-- 内容区域 /-->
 
@@ -238,6 +174,7 @@
 		<!-- 底部导航 /-->
 
 	</div>
+
 
 	<script
 		src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -326,14 +263,6 @@
 		src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 	<script>
-		function changePageSize() {
-			//获取下拉框的值
-			var pageSize = $("#changePageSize").val();
-
-			//向服务器发送请求，改变没页显示条数
-			location.href = "${pageContext.request.contextPath}/syslog/findAll.do?page=1&size=" + pageSize;
-		}
-
 		$(document).ready(function() {
 			// 选择框
 			$(".select2").select2();
@@ -354,27 +283,26 @@
 		}
 
 		$(document).ready(function() {
-
-			// 激活导航位置
-			setSidebarActive("order-manage");
-
-			// 列表按钮 
-			$("#dataList td input[type='checkbox']").iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				increaseArea : '20%'
-			});
-			// 全选操作 
-			$("#selall").click(function() {
-				var clicks = $(this).is(':checked');
-				if (!clicks) {
-					$("#dataList td input[type='checkbox']").iCheck("uncheck");
-				} else {
-					$("#dataList td input[type='checkbox']").iCheck("check");
-				}
-				$(this).data("clicks", !clicks);
+			$('#datepicker-a3').datetimepicker({
+				format : "yyyy-mm-dd hh:ii",
+				autoclose : true,
+				todayBtn : true,
+				language : "zh-CN"
 			});
 		});
+
+		$(document).ready(function() {
+			// 激活导航位置
+			setSidebarActive("order-manage");
+			$("#datepicker-a3").datetimepicker({
+				format : "yyyy-mm-dd hh:ii",
+
+			});
+
+		});
 	</script>
+
+
 </body>
 
 </html>

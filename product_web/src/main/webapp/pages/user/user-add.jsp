@@ -6,7 +6,7 @@
 <!-- 页面meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>数据 - AdminLTE2定制版</title>
+<title>用户管理-添加用户</title>
 <meta name="description" content="AdminLTE2定制版">
 <meta name="keywords" content="AdminLTE2定制版">
 
@@ -79,14 +79,14 @@
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
-				用户管理 <small>用户表单</small>
+				用户管理 <small>全部用户</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/toMain.do"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
-				<li class="active">用户表单</li>
+				<li class="active">全部用户</li>
 			</ol>
 			</section>
 			<!-- 内容头部 /-->
@@ -124,8 +124,8 @@
 						<div class="col-md-4 data">
 							<select class="form-control select2" style="width: 100%"
 								name="status">
-								<option value="0" selected="selected">关闭</option>
-								<option value="1">开启</option>
+								<option value="0">关闭</option>
+								<option value="1" selected="selected">开启</option>
 							</select>
 						</div>
 
