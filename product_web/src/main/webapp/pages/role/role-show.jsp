@@ -174,12 +174,12 @@
 
 		<!-- 底部导航 -->
 		<footer class="main-footer">
-		<div class="pull-right hidden-xs">
-			<b>Version</b> 1.0.8
-		</div>
-		<strong>Copyright &copy; 2014-2017 <a
-			href="http://www.itcast.cn">研究院研发部</a>.
-		</strong> All rights reserved. </footer>
+			<div class="pull-right hidden-xs">
+				<b>Version</b> 0.1
+			</div>
+			<strong>Copyright &copy; 2018-2020 <a
+					href="https://github.com/tangjiacheng/ssm_03product">查看源码</a>.
+			</strong> All rights reserved. </footer>
 		<!-- 底部导航 /-->
 
 	</div>

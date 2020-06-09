@@ -133,8 +133,6 @@
 							   class="table table-bordered table-striped table-hover dataTable">
 							<thead>
 							<tr>
-								<th class="" style="padding-right: 0px">
-								</th>
 								<th class="sorting_asc">ID</th>
 								<th class="sorting_desc">角色名称</th>
 								<th class="sorting_asc sorting_asc_disabled">描述</th>
