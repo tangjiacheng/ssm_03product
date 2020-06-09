@@ -103,12 +103,12 @@
 						<div class="col-md-2 title">产品编号</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="productNum"
-								placeholder="产品编号" value="">
+								placeholder="产品编号" value="" required>
 						</div>
 						<div class="col-md-2 title">产品名称</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="productName"
-								placeholder="产品名称" value="">
+								placeholder="产品名称" value="" required>
 						</div>
 						<div class="col-md-2 title">出发时间</div>
 						<div class="col-md-4 data">
@@ -125,13 +125,13 @@
 						<div class="col-md-2 title">出发城市</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="cityName"
-								placeholder="出发城市" value="">
+								placeholder="出发城市" value="" required>
 						</div>
 
 						<div class="col-md-2 title">产品价格</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" placeholder="产品价格"
-								name="productPrice" value="">
+								name="productPrice" value="" required>
 						</div>
 
 						<div class="col-md-2 title">产品状态</div>

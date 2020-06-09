@@ -38,7 +38,7 @@ public class LogAop {
     private Method method;  // 访问的方法
 
     // 前置通知, 获取开始时间, 执行的类, 执行的方法
-    @Before("execution(* com.ssm.controller.*.*(..))")
+    @Before("execution(public * com.ssm.controller.*.*(..))")
     public void doBefore(JoinPoint jp) throws NoSuchMethodException {
         visitTime = new Timestamp(new Date().getTime());
         // 获取访问的类
@@ -59,47 +59,48 @@ public class LogAop {
     }
 
     // 后置通知, 获取访问时长, url, IP地址
-    @After("execution(* com.ssm.controller.*.*(..))")
+    @After("execution(public * com.ssm.controller.*.*(..))")
     public void doAfter(JoinPoint jp){
         // 获取访问的时长
         Long executionTime = new Date().getTime() - visitTime.getTime();
         // 获取URL
         String url = null;
+        String[] classValue = null;
         if (clazz != null && method != null && clazz != LogAop.class && clazz != SysLogController.class) {
             // 1, 获取类上的@RequestMapping
             RequestMapping clazzAnnotation = clazz.getAnnotation(RequestMapping.class);
             if (clazzAnnotation != null) {
-                String[] classValue = clazzAnnotation.value();
-
+                classValue = clazzAnnotation.value();
+            }else
+                classValue = new String[]{""};
                 // 2. 获取方法上的@RequestMapping
-                if (method != null) {
-                    RequestMapping methodAnnotation = method.getAnnotation(RequestMapping.class);
-                    if (methodAnnotation != null) {
-                        String[] methodValue = methodAnnotation.value();
-                        url = classValue[0] + methodValue[0];
-                    }
-                    // 获取访问的ip
-                    String ip = request.getRemoteAddr();
+            if (method != null && !"findAll".equals(method.getName()) && !"toMain".equals(method.getName()) && !"initBinder".equals(method.getName())) {
+                RequestMapping methodAnnotation = method.getAnnotation(RequestMapping.class);
+                if (methodAnnotation != null) {
+                    String[] methodValue = methodAnnotation.value();
+                    url = classValue[0] + methodValue[0];
+                }
+                // 获取访问的ip
+                String ip = request.getRemoteAddr();
 
-                    // 获取当前操作的用户(利用spring security获取)
-                    SecurityContext context = SecurityContextHolder.getContext(); // 从上下文中获取当前登录的用户
-                    User user = (User) context.getAuthentication().getPrincipal();
-                    String username = user.getUsername();
-                    // 也可以直接通过request获取
+                // 获取当前操作的用户(利用spring security获取)
+                SecurityContext context = SecurityContextHolder.getContext(); // 从上下文中获取当前登录的用户
+                User user = (User) context.getAuthentication().getPrincipal();
+                String username = user.getUsername();
+                // 也可以直接通过request获取
 //                  request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
 
-                    // 将日志相关信息封装到SysLog对象中
-                    SysLog sysLog = new SysLog();
-                    sysLog.setVisitTime(visitTime);
-                    sysLog.setUsername(username);
-                    sysLog.setIp(ip);
-                    sysLog.setUrl(url);
-                    sysLog.setExecutionTime(executionTime);
-                    sysLog.setMethod(clazz.getName() + "." + method.getName());
+                // 将日志相关信息封装到SysLog对象中
+                SysLog sysLog = new SysLog();
+                sysLog.setVisitTime(visitTime);
+                sysLog.setUsername(username);
+                sysLog.setIp(ip);
+                sysLog.setUrl(url);
+                sysLog.setExecutionTime(executionTime);
+                sysLog.setMethod(clazz.getName() + "." + method.getName());
 
-                    // 调用Service完成日志记录
-                    sysLogService.saveLog(sysLog);
-                }
+                // 调用Service完成日志记录
+                sysLogService.saveLog(sysLog);
             }
         }
 

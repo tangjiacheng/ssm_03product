@@ -82,7 +82,7 @@
 				角色管理 <small>全部角色</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+				<li><a href="${pageContext.request.contextPath}/toMain.do"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
 						href="${pageContext.request.contextPath}/role/findAll.do">角色管理</a></li>
@@ -108,7 +108,7 @@
 						<div class="pull-left">
 							<div class="form-group form-inline">
 								<div class="btn-group">
-									<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/role-add.jsp'">
+									<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/role/toAdd.do'">
 										<i class="fa fa-file-o"></i> 新建
 									</button>
 
@@ -284,7 +284,7 @@
 		var pageSize = $("#changePageSize").val();
 
 		//向服务器发送请求，改变没页显示条数
-		location.href = "${pageContext.request.contextPath}/orders/findAll.do?page=1&size="
+		location.href = "${pageContext.request.contextPath}/role/findAll.do?page=1&size="
 				+ pageSize;
 	}
 	$(document).ready(function() {

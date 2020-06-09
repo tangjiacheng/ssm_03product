@@ -21,4 +21,6 @@ public interface IUserService extends UserDetailsService {
     List<Role> findRestRole(int userId);
 
     void addRoleToUser(int userId, String[] ids);
+
+    void changePassword(String username, String password);
 }

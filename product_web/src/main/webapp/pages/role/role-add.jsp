@@ -82,7 +82,7 @@
 				角色管理 <small>角色表单</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+				<li><a href="${pageContext.request.contextPath}/toMain.do"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a href="${pageContext.request.contextPath}/role/findAll.do">角色管理</a></li>
 				<li class="active">角色表单</li>
@@ -102,12 +102,12 @@
 						<div class="col-md-2 title">角色名称</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="roleName"
-								placeholder="角色名称" value="">
+								placeholder="角色名称" value="" required>
 						</div>
 						<div class="col-md-2 title">角色描述</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="roleDesc"
-								placeholder="角色描述" value="">
+								placeholder="角色描述" value="" required>
 						</div>
 										
 

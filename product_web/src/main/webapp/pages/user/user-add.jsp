@@ -82,7 +82,7 @@
 				用户管理 <small>用户表单</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+				<li><a href="${pageContext.request.contextPath}/toMain.do"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
@@ -103,22 +103,22 @@
 						<div class="col-md-2 title">用户名称</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="username"
-								placeholder="用户名称" value="">
+								placeholder="用户名称" value="" required>
 						</div>
 						<div class="col-md-2 title">密码</div>
 						<div class="col-md-4 data">
 							<input type="password" class="form-control" name="password"
-								placeholder="密码" value="">
+								placeholder="密码" value="" required>
 						</div>
 						<div class="col-md-2 title">邮箱</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="email"
-								placeholder="邮箱" value="">
+								placeholder="邮箱" value="" required>
 						</div>
 						<div class="col-md-2 title">联系电话</div>
 						<div class="col-md-4 data">
 							<input type="text" class="form-control" name="phoneNum"
-								placeholder="联系电话" value="">
+								placeholder="联系电话" value="" required>
 						</div>
 						<div class="col-md-2 title">用户状态</div>
 						<div class="col-md-4 data">

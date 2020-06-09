@@ -1,13 +1,11 @@
 package com.ssm.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.ssm.domain.Order;
 import com.ssm.domain.Product;
 import com.ssm.service.IProductService;
 import com.ssm.utils.DateStringEditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +28,9 @@ public class ProductController {
     @Autowired
     private IProductService productService;
 
+
     @InitBinder
-    public void initBinder(WebDataBinder binder) {
+    protected void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Timestamp.class, new DateStringEditor());
     }
 

@@ -82,7 +82,7 @@
                 权限管理 <small>权限列表</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="${pageContext.request.contextPath}/index.jsp"><i
+                <li><a href="${pageContext.request.contextPath}/toMain.do"><i
                         class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a
                         href="${pageContext.request.contextPath}/role/findAll.do">权限管理</a></li>
@@ -295,7 +295,7 @@
         var pageSize = $("#changePageSize").val();
 
         //向服务器发送请求，改变没页显示条数
-        location.href = "${pageContext.request.contextPath}/orders/findAll.do?page=1&size="
+        location.href = "${pageContext.request.contextPath}/permission/findAll.do?page=1&size="
             + pageSize;
     }
 

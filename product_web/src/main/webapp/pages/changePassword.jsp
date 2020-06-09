@@ -6,7 +6,7 @@
 <!-- 页面meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>数据 - AdminLTE2定制版</title>
+<title>修改密码</title>
 <meta name="description" content="AdminLTE2定制版">
 <meta name="keywords" content="AdminLTE2定制版">
 
@@ -79,35 +79,35 @@
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
-				角色管理 <small>角色表单</small>
+				个人信息 <small>修改密码</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/toMain.do"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
-				<li><a href="${pageContext.request.contextPath}/permission/findAll.do">权限管理</a></li>
-				<li class="active">角色表单</li>
+				<li class="active">修改密码</li>
 			</ol>
 			</section>
 			<!-- 内容头部 /-->
 
-			<form action="${pageContext.request.contextPath}/permission/savePermission.do"
+			<form action="${pageContext.request.contextPath}/changePassword.do"
 				method="post">
 				<!-- 正文区域 -->
 				<section class="content"> <!--产品信息-->
 
 				<div class="panel panel-default">
-					<div class="panel-heading">添加权限</div>
+					<input type="hidden" name="username" value="${username}"/>
+					<div class="panel-heading">修改密码</div>
 					<div class="row data-type">
 
-						<div class="col-md-2 title">权限描述</div>
+						<div class="col-md-2 title">新密码</div>
 						<div class="col-md-4 data">
-							<input type="text" class="form-control" name="permissionName"
-								placeholder="权限描述" value="" required>
+							<input type="password" class="form-control" name="password1"
+								placeholder="" value="" required>
 						</div>
-						<div class="col-md-2 title">URL</div>
+						<div class="col-md-2 title">再次输入</div>
 						<div class="col-md-4 data">
-							<input type="text" class="form-control" name="url"
-								placeholder="url" value="" required>
+							<input type="password" class="form-control" name="password2"
+								placeholder="" value="" required>
 						</div>
 										
 

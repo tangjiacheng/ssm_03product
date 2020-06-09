@@ -79,4 +79,12 @@ public class UserServiceImpl implements IUserService {
             userDao.addRoleToUser(userId, Integer.parseInt(id));
         }
     }
+
+    @Override
+    @Transactional
+    public void changePassword(String username, String password) {
+        UserInfo user = userDao.findByUserName(username);
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        userDao.updateUser(user);
+    }
 }
